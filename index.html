@@ -2,38 +2,159 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Explorer Travel Guide</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta
-    name="description"
-    content="Search a city and explore attractions, landmarks, and points of interest with details and beautiful photos."
-  />
+  <title>Travel Guide Test</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Bulma CSS -->
+  <!-- Bulma CSS ONLY -->
   <link
     rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/[email protected]/css/bulma.min.css"
+    href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css"
   />
-
-
- 
+ <!-- Custom CSS -->
+  <link
+    rel="stylesheet"
+    href="assets/css/styles.css"
+  />
 </head>
-<body>
 
- <button id="test">Test OpenCritic</button>
-  <pre id="output"></pre>
+<body> 
+ <!-- Banner Hero --> 
+ <section class="hero is-halfheight is-info is-bold">
+   
+    <div class="hero-body">
+      <div class="container has-text-centered">
+        <h1 class="title is-1">Travel Guide</h1>
+        <h3 class="subtitle is-3">
+          Search a city to explore attractions and landmarks
+        </h3>
+      </div>
+    </div> 
+    
+  </section>
 
- 
-  <!-- FOOTER -->
- <footer class="footer">
-  <div class="content has-text-centered">
-    <p>
-      Made with ❤️ by <a href="https://github.com/JeanParkdev">Jean Park</a>.
-     
-      
-    </p>
+ <!-- Hero Image -->
+  <section class="section">
+  <div class="container">
+    <div class="hero-image-card">
+      <figure class="image">
+        <img 
+          src="https://images.unsplash.com/photo-1764092768723-738bba5645e8?q=80&w=1200&auto=format&fit=crop"
+          alt="Travel Sign Posts"
+        >
+      </figure>
+    </div>
   </div>
-</footer>
+</section>
+
+  <!-- SIDEBAR + MAIN CONTENT -->
+  <section class="section">
+    <div class="container">
+      <div class="columns">
+        
+        <!-- SIDEBAR -->
+        <aside class="column is-3-desktop is-4-tablet is-12-mobile">
+          <header class="mb-4">
+            <h2 class="title is-4">🌍 Travel Explorer</h2>
+            <p class="is-size-7 has-text-grey">
+              Find attractions around the world.
+            </p>
+          </header>
+
+          <!-- Bulma menu component -->
+          <nav class="menu mb-5" aria-label="Main navigation">
+            <p class="menu-label">Explore</p>
+            <ul class="menu-list">
+              <li><a class="is-active">Search</a></li>
+              <li><a>Itinerary (coming soon)</a></li>
+            </ul>
+          </nav>
+
+          <!-- Search form -->
+          <section aria-labelledby="search-label">
+            <p id="search-label" class="menu-label">
+              Search by city
+            </p>
+
+            <form id="search-form">
+              <div class="field">
+                <label class="label is-small" for="city-input">City name</label>
+                <div class="control">
+                  <input
+                    id="city-input"
+                    class="input"
+                    type="text"
+                    placeholder="e.g. Paris"
+                  />
+                </div>
+              </div>
+
+              <div class="field">
+                <div class="control">
+                  <!-- This should be a blue Bulma button -->
+                  <button
+                    class="button is-info is-fullwidth"
+                    type="submit"
+                  >
+                    Search
+                  </button>
+                </div>
+              </div>
+            </form>
+          </section>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main
+          class="column is-9-desktop is-8-tablet is-12-mobile"
+          aria-label="Search results and details"
+        >
+          <!-- results  -->
+          <section aria-labelledby="results-title">
+            <div class="level mb-2">
+              <div class="level-left">
+                <h2 class="title is-4" id="results-title">Attractions</h2>
+              </div>
+              <div class="level-right">
+                <p
+                  id="results-count"
+                  class="is-size-7 has-text-grey"
+                ></p>
+              </div>
+            </div>
+
+            <p
+              id="status-message"
+              class="is-size-7 has-text-grey mb-3"
+            ></p>
+
+            <!-- results grid -->
+            <div
+              id="results"
+              class="columns is-multiline"
+              aria-live="polite"
+            ></div>
+
+            <p
+              id="results-empty"
+              class="is-size-7 has-text-grey"
+            >
+              Enter a city in the sidebar and press Search to see attractions.
+            </p>
+          </section>
+        </main>
+      </div>
+    </div>
+  </section>
+
+  <!-- footer -->
+  <footer class="footer">
+    <div class="content has-text-centered">
+      <p>
+        Made with ❤️ by <a href="https://github.com/JeanParkdev">Jean Park</a>.
+      </p>
+    </div>
+  </footer>
+
   <!-- Custom JS -->
 <script src="assets/js/script.js"></script>
 
