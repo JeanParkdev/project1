@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Travel Guide Test</title>
+  <title>Game Guide Test</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Bulma CSS ONLY -->
@@ -19,13 +19,13 @@
 
 <body> 
  <!-- Banner Hero --> 
- <section class="hero is-halfheight is-info is-bold">
+ <section class="hero is-medium is-link is-bold">
    
     <div class="hero-body">
       <div class="container has-text-centered">
-        <h1 class="title is-1">Travel Guide</h1>
+        <h1 class="title is-1">Game Guide</h1>
         <h3 class="subtitle is-3">
-          Search a city to explore attractions and landmarks
+          Search a game title to learn more about it!
         </h3>
       </div>
     </div> 
@@ -35,11 +35,11 @@
  <!-- Hero Image -->
   <section class="section">
   <div class="container">
-    <div class="hero-image-card">
+    <div class="hero-image-card has-background-info">
       <figure class="image">
         <img 
-          src="https://images.unsplash.com/photo-1764092768723-738bba5645e8?q=80&w=1200&auto=format&fit=crop"
-          alt="Travel Sign Posts"
+          src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          alt="Game Consoles"
         >
       </figure>
     </div>
@@ -54,9 +54,9 @@
         <!-- SIDEBAR -->
         <aside class="column is-3-desktop is-4-tablet is-12-mobile">
           <header class="mb-4">
-            <h2 class="title is-4">🌍 Travel Explorer</h2>
+            <h2 class="title is-4">🎮 Game Explorer</h2>
             <p class="is-size-7 has-text-grey">
-              Find attractions around the world.
+              Look up your favorite games! 🎮
             </p>
           </header>
 
@@ -65,25 +65,25 @@
             <p class="menu-label">Explore</p>
             <ul class="menu-list">
               <li><a class="is-active">Search</a></li>
-              <li><a>Itinerary (coming soon)</a></li>
+              <li><a>New Releases (coming soon)</a></li>
             </ul>
           </nav>
 
           <!-- Search form -->
           <section aria-labelledby="search-label">
             <p id="search-label" class="menu-label">
-              Search by city
+              Search by Game Title
             </p>
 
             <form id="search-form">
               <div class="field">
-                <label class="label is-small" for="city-input">City name</label>
+                <label class="label is-small is-rounded" for="game-input">Game title</label>
                 <div class="control">
                   <input
-                    id="city-input"
+                    id="game-input"
                     class="input"
                     type="text"
-                    placeholder="e.g. Paris"
+                    placeholder="e.g. Minecraft"
                   />
                 </div>
               </div>
@@ -92,7 +92,7 @@
                 <div class="control">
                   <!-- This should be a blue Bulma button -->
                   <button
-                    class="button is-info is-fullwidth"
+                    class="button is-info is-fullwidth is-rounded"
                     type="submit"
                   >
                     Search
@@ -112,7 +112,7 @@
           <section aria-labelledby="results-title">
             <div class="level mb-2">
               <div class="level-left">
-                <h2 class="title is-4" id="results-title">Attractions</h2>
+                <h2 class="title is-4" id="results-title">Games</h2>
               </div>
               <div class="level-right">
                 <p
@@ -138,7 +138,7 @@
               id="results-empty"
               class="is-size-7 has-text-grey"
             >
-              Enter a city in the sidebar and press Search to see attractions.
+              Enter a game title in the sidebar and press Search to see results.
             </p>
           </section>
         </main>
