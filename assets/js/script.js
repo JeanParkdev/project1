@@ -19,6 +19,9 @@ const resultsCount = document.getElementById('results-count');
 const resultsContainer = document.getElementById('results');
 const gamesDetailsEl = document.getElementById('games-details');
 
+//storage for search results
+let lastSearchResults = null;
+
 function setStatus(message) {
     statusMessage.textContent = message;
 }
@@ -68,6 +71,10 @@ searchForm.addEventListener('submit', async (e) => {
 function renderSearchResults(games) {
     clearResults();
 
+    //saves results for back button
+      lastSearchResults = games;
+
+
     if (!Array.isArray(games) || games.length === 0) {
       resultsCount.textContent = "0 results";
       resultsEmpty.textContent = "No results found 😞. Please try another game title.";
@@ -112,6 +119,7 @@ function renderSearchResults(games) {
       //User clicks View Details
       selectBtn.addEventListener('click', () => {
         console.log(`user selected "${game.name}"`);
+        fetchGameDetails(game.id);
       });
 
         
@@ -125,10 +133,6 @@ function renderSearchResults(games) {
   cardContent.appendChild(level);
   card.appendChild(cardContent);
   column.appendChild(card);
-
-  card.addEventListener('click', () => {
-            fetchGameDetails(game.id);
-        });
 
   resultsContainer.appendChild(column);
   });
@@ -183,12 +187,10 @@ function renderGameDetails(game) {
   const rightCol = document.createElement('div');
   rightCol.className = "column is-one-third has-text-centered";
 
-  // GAME COVER IMAGE (Right side)
+  const imageBaseUrl = 'https://img.opencritic.com/';
 
-const imageBaseUrl = 'https://img.opencritic.com/';
-
-const firstScreenshot =
-  game.images?.screenshots?.[0] || null;
+  const firstScreenshot =
+    game.images?.screenshots?.[0] || null;
 
 let screenshotUrl = null;
 if (firstScreenshot) {
@@ -211,6 +213,21 @@ if (screenshotUrl) {
   img.style.margin = "0 auto";
 
   imgWrapper.appendChild(img);
+
+  // BACK BUTTON
+  const backBtn = document.createElement('button');
+  backBtn.className = "button is-light is-small mb-3";
+  backBtn.textContent = "← Back to results";
+
+  backBtn.addEventListener('click', () => {
+  if (lastSearchResults && Array.isArray(lastSearchResults)) {
+    renderSearchResults(lastSearchResults);
+    setStatus("Select a game to view details.");
+  } else {
+    setStatus("There are no previous search results to return to.");
+  }
+  });
+
 
   // GAME TITLE
   const titleEl = document.createElement('p');
@@ -280,7 +297,9 @@ if (screenshotUrl) {
   descriptionEl.textContent =
     game.description || "No description available.";
 
+  
   // APPEND ALL TEXT LEFT COLUMN
+  leftCol.appendChild(backBtn);
   leftCol.appendChild(titleEl);
   leftCol.appendChild(releaseDateEl);
   leftCol.appendChild(creatorsEl);
