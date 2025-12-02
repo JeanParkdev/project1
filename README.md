@@ -2,39 +2,66 @@
 # Project 1: Game Guide
 
 ## Description
-Brief description (2–4 sentences). Explain what the app does and why it exists.
+A web application that allows users to search for video games, view detailed critic information, and watch official game trailers
+
+This project uses the OpenCritic API for game data and the YouTube Data API for video trailers
 
 ## Features
-- Feature 1
-- Feature 2
-- Feature 3
+- 🔍 Search for any game
+- 📄 View detailed game info
+- 🎞️ YouTube Trailer Integration
+- 🔙 Back to results
+- 🎨 Clean UI built with Bulma
 
 ## Screenshot
-![App Screenshot](./assets/screenshot.png)
+![App Screenshot](./assets/screenshot/Screenshot.png)
+![App screenshot2](./assets/screenshot/Screenshot2.png)
+![App screenshot3](./assets/screenshot/Screenshot%203.png)
+
 
 ## Technologies Used
 - HTML5
 - CSS3
 - JavaScript
-- APIs / Libraries
-Tech used
-- bulma
-- html5
-- css
-## Installation
-1. Clone the repository
-2. Open index.html in your browser
-3. Add configuration if needed
+- OpenCritic API
+- YouTube Data API v3
+- Unsplash
 
-## Usage
-1. Step one
-2. Step two
-3. Step three
+## Folder Structure
+
+/project-root
+│
+├── index.html
+├── README.md
+│
+├── assets/
+│   ├── css/
+│   │   └── styles.css
+│   └── js/
+│       └── script.js
+│
+└── images/ (optional)
+
+## API Keys
+
+This project utilizes 2 APIs
+1. OpenCritic (via RapidAPI)
+2. YouTube Data API v3 
+
+## 🧪 How It Works
+1. User searches for a game
+2. User picks a result
+3. Trailer search occurs
+4. UI renders a card with:
+    -   Text information (left)
+    -   Image (right)
+    -   Trailer (below text)
 
 ## Future Enhancements
-- Enhancement 1
-- Enhancement 2
-- Enhancement 3
+- Add favorite games list
+- Add New Releases list
+- Add game screenshot carousel
+- Best Deal finder
 
 ## Resources
 - MDN Docs
