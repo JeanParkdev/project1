@@ -113,7 +113,7 @@ function renderSearchResults(games) {
 
       // Details Button
       const selectBtn = document.createElement('button');
-      selectBtn.className = "button is-small is-info is-rounded mt-2";
+      selectBtn.className = "button is-small is-primary is-rounded mt-2";
       selectBtn.textContent = "View Details";
 
       //User clicks View Details
@@ -216,7 +216,7 @@ if (screenshotUrl) {
 
   // BACK BUTTON
   const backBtn = document.createElement('button');
-  backBtn.className = "button is-light is-small mb-3";
+  backBtn.className = "button is-light is-primary is-small mb-3";
   backBtn.textContent = "← Back to results";
 
   backBtn.addEventListener('click', () => {
