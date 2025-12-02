@@ -46,7 +46,7 @@ searchForm.addEventListener('submit', async (e) => {
     
     statusMessage.textContent = `Searching for "${query}"...`;
 
-    //API URL with query
+//API URL with query
  const url = `${baseUrl}/game/search?criteria=${encodeURIComponent(query)}`;
 
 
@@ -189,8 +189,8 @@ async function fetchYouTubeTrailer(gameTitle) {
 
   return items[0].id.videoId || null;
 }
-//YT trailer embedding 
 
+//YT trailer embedding 
 async function loadTrailer(gameTitle, containerEl) {
    console.log("Searching YouTube trailer for:", gameTitle);
   if (!containerEl) return;
@@ -215,7 +215,6 @@ async function loadTrailer(gameTitle, containerEl) {
     const iframe = document.createElement("iframe");
     iframe.src = `https://www.youtube.com/embed/${videoId}`;
     iframe.title = `${gameTitle} trailer`;
-    iframe.frameBorder = "0";
     iframe.allow =
       "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
     iframe.allowFullscreen = true;
@@ -242,7 +241,6 @@ async function loadTrailer(gameTitle, containerEl) {
 }
 
 //render game details
-
 function renderGameDetails(game) {
   // Clear search results
   clearResults(); 
@@ -260,17 +258,17 @@ function renderGameDetails(game) {
   cardContent.className = "card-content";
 
 
-  // TWO-COLUMN LAYOUT
+  // 2 columns
 
   // Bulma columns: one for text, one for the image
   const columns = document.createElement('div');
   columns.className = "columns is-vcentered";
 
-  // LEFT COLUMN (Text info)
+  // LEFT (Text )
   const leftCol = document.createElement('div');
   leftCol.className = "column";
 
-  // RIGHT COLUMN (Game cover image)
+  // RIGHT (Game image)
   const rightCol = document.createElement('div');
   rightCol.className = "column is-one-third has-text-centered";
 
@@ -301,7 +299,7 @@ if (screenshotUrl) {
 
   imgWrapper.appendChild(img);
 
-  // BACK BUTTON
+  // BACK button
   const backBtn = document.createElement('button');
   backBtn.className = "button is-light is-primary is-small mb-3";
   backBtn.textContent = "← Back to results";
@@ -316,12 +314,12 @@ if (screenshotUrl) {
   });
 
 
-  // GAME TITLE
+  // game title
   const titleEl = document.createElement('p');
   titleEl.className = "title is-4";
   titleEl.textContent = game.name || "Untitled game";
 
-  // RELEASE DATE
+  // release date
   const releaseDate = (game.firstReleaseDate || game.releaseDate).split('T')[0]|| null;
 
   const releaseDateEl = document.createElement('p');
@@ -330,11 +328,11 @@ if (screenshotUrl) {
     ? `Release date: ${releaseDate}`
     : "Release date: N/A";
 
-  // CREATORS (Developers / Publishers)
+  // creators (Developers / Publishers)
   const creatorsEl = document.createElement('p');
   creatorsEl.className = "is-size-6";
 
-  // (companies vs Companies)
+  // Companies
   const companies = Array.isArray(game.companies)
     ? game.companies
     : Array.isArray(game.Companies)
@@ -348,7 +346,7 @@ if (screenshotUrl) {
     creatorsEl.textContent = "Creators: N/A";
   }
 
-  // PLATFORMS
+  // Platforms
   const platformsEl = document.createElement('p');
   platformsEl.className = "is-size-6";
 
@@ -365,7 +363,7 @@ if (screenshotUrl) {
     platformsEl.textContent = "Platforms: N/A";
   }
 
-  // OPENCRITIC SCORE
+  // OC score
 
   const ratingEl = document.createElement('p');
   ratingEl.className = "is-size-6 mt-2";
@@ -378,13 +376,13 @@ if (screenshotUrl) {
       ? `OpenCritic Score: ${score}/100`
       : "OpenCritic Score: N/A";
 
-  // DESCRIPTION
+  // Description
   const descriptionEl = document.createElement('div');
   descriptionEl.className = "content mt-3";
   descriptionEl.textContent =
     game.description || "No description available.";
 
-  //YT TRAILER CONTAINER
+  //YT trailer container
   const trailerContainer = document.createElement('div');
   trailerContainer.className = 'mt-4';
   trailerContainer.textContent = 'Loading trailer...';
@@ -396,7 +394,7 @@ if (screenshotUrl) {
     "No game title available to search for a trailer.";
 }
   
-  // APPEND ALL TEXT LEFT COLUMN
+  // Text- left column
   leftCol.appendChild(backBtn);
   leftCol.appendChild(titleEl);
   leftCol.appendChild(releaseDateEl);
@@ -407,10 +405,10 @@ if (screenshotUrl) {
   leftCol.appendChild(trailerContainer);
 
 
-  // RIGHT COLUMN
+  // Right column
   rightCol.appendChild(imgWrapper);
 
- // ASSEMBLE THE TWO COLUMNS
+ // combine columns
   columns.appendChild(leftCol);
   columns.appendChild(rightCol);
 
@@ -419,7 +417,7 @@ if (screenshotUrl) {
   card.appendChild(cardContent);
   column.appendChild(card);
 
-  //add to results container replacing previous cards
+  //add to results container 
   resultsContainer.appendChild(column);
 } 
 } 
