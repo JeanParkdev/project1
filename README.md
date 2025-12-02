@@ -28,7 +28,7 @@ This project uses the OpenCritic API for game data and the YouTube Data API for 
 - Unsplash
 
 ## Folder Structure
-
+```text 
 /project-root
 │
 ├── index.html
@@ -40,7 +40,8 @@ This project uses the OpenCritic API for game data and the YouTube Data API for 
 │   └── js/
 │       └── script.js
 │
-└── images/ (optional)
+└── screenshot 
+```
 
 ## API Keys
 
