@@ -1,5 +1,5 @@
 
-# Project 1: Project Title
+# Project 1: Game Guide
 
 ## Description
 Brief description (2–4 sentences). Explain what the app does and why it exists.

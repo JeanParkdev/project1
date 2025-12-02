@@ -213,8 +213,6 @@ async function loadTrailer(gameTitle, containerEl) {
     iframeWrapper.className = "video-container";
 
     const iframe = document.createElement("iframe");
-    iframe.width = "560";
-    iframe.height = "315";
     iframe.src = `https://www.youtube.com/embed/${videoId}`;
     iframe.title = `${gameTitle} trailer`;
     iframe.frameBorder = "0";
