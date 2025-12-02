@@ -1,7 +1,7 @@
-// //Fetching OpenCritic API
+//Fetching OpenCritic API
 
 const baseUrl = 'https://opencritic-api.p.rapidapi.com';
-const key = 'c35335b087mshdcc88c2911dcafep107f79jsn94e9e1a61c34';
+const key = '25f2691066mshfaa4aef9a804676p1a889ajsnc114508e2a85';
 const options = {
 	method: 'GET',
 	headers: {
@@ -9,6 +9,10 @@ const options = {
 		'x-rapidapi-host': 'opencritic-api.p.rapidapi.com'
 	}
 };
+
+// Youtube trailer API info
+const YT_API_KEY = 'AIzaSyDX-NW1UKhu6aHyYWkMa8jO3KUX19MQBLs';
+const YT_BASE_URL = 'https://www.googleapis.com/youtube/v3/search';
 
 //Dom Elements 
 const searchForm = document.getElementById('search-form');
@@ -154,6 +158,91 @@ function renderSearchResults(games) {
     return gameDetails;
 }
 
+//Search YT trailer
+async function fetchYouTubeTrailer(gameTitle) {
+
+  const YT_query = `${gameTitle} official trailer`;
+
+  const params = new URLSearchParams({
+    key: YT_API_KEY,
+    part: "snippet",
+    q: YT_query,
+    type: "video",
+    maxResults: "1",
+    videoEmbeddable: "true",
+  });
+
+  const YT_url = `${YT_BASE_URL}?${params.toString()}`;
+  console.log("YouTube search URL:", YT_url);
+  const response = await fetch(YT_url);
+  if (!response.ok) {
+    throw new Error(`YouTube HTTP error! status: ${response.status}`);
+  }
+
+  const data = await response.json();
+  console.log("YouTube search response:", data);
+
+  const items = data.items || [];
+  if (items.length === 0) {
+    return null;
+  }
+
+  return items[0].id.videoId || null;
+}
+//YT trailer embedding 
+
+async function loadTrailer(gameTitle, containerEl) {
+   console.log("Searching YouTube trailer for:", gameTitle);
+  if (!containerEl) return;
+
+
+  containerEl.textContent = "Loading trailer...";
+
+  try {
+    const videoId = await fetchYouTubeTrailer(gameTitle);
+
+    if (!videoId) {
+      containerEl.textContent = "No trailer found on YouTube.";
+      return;
+    }
+
+    // Clear text and embed iframe
+    containerEl.textContent = "";
+
+    const iframeWrapper = document.createElement("div");
+    iframeWrapper.className = "video-container";
+
+    const iframe = document.createElement("iframe");
+    iframe.width = "560";
+    iframe.height = "315";
+    iframe.src = `https://www.youtube.com/embed/${videoId}`;
+    iframe.title = `${gameTitle} trailer`;
+    iframe.frameBorder = "0";
+    iframe.allow =
+      "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+    iframe.allowFullscreen = true;
+    iframe.referrerPolicy = "strict-origin-when-cross-origin";
+    iframeWrapper.appendChild(iframe);
+    containerEl.appendChild(iframeWrapper);
+
+  // 🔗 Fallback: direct link in case embed has issues 
+    const link = document.createElement("a");
+    link.href = `https://www.youtube.com/watch?v=${videoId}`;
+    link.target = "_blank";
+    link.rel = "noopener";
+    link.textContent = "Watch this trailer on YouTube";
+
+    const linkWrapper = document.createElement("p");
+    linkWrapper.className = "mt-2";
+    linkWrapper.appendChild(link);
+
+    containerEl.appendChild(linkWrapper);
+  } catch (err) {
+    console.error("Error loading YouTube trailer:", err);
+    containerEl.textContent = "Error loading trailer.";
+  }
+}
+
 //render game details
 
 function renderGameDetails(game) {
@@ -297,6 +386,17 @@ if (screenshotUrl) {
   descriptionEl.textContent =
     game.description || "No description available.";
 
+  //YT TRAILER CONTAINER
+  const trailerContainer = document.createElement('div');
+  trailerContainer.className = 'mt-4';
+  trailerContainer.textContent = 'Loading trailer...';
+  
+  if (game.name) {
+  loadTrailer(game.name, trailerContainer);
+} else {
+  trailerContainer.textContent =
+    "No game title available to search for a trailer.";
+}
   
   // APPEND ALL TEXT LEFT COLUMN
   leftCol.appendChild(backBtn);
@@ -306,6 +406,8 @@ if (screenshotUrl) {
   leftCol.appendChild(platformsEl);
   leftCol.appendChild(ratingEl);
   leftCol.appendChild(descriptionEl);
+  leftCol.appendChild(trailerContainer);
+
 
   // RIGHT COLUMN
   rightCol.appendChild(imgWrapper);
