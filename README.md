@@ -13,9 +13,14 @@ This project uses the OpenCritic API for game data and the YouTube Data API for 
 - 🔙 Back to results
 - 🎨 Clean UI built with Bulma
 
-## Screenshot
+## Screenshots
+- Front Page
 ![App Screenshot](./assets/screenshot/Screenshot.png)
+
+- Search Functionality
 ![App screenshot2](./assets/screenshot/Screenshot2.png)
+
+- Details Functionality
 ![App screenshot3](./assets/screenshot/Screenshot%203.png)
 
 
@@ -63,6 +68,7 @@ This project utilizes 2 APIs
 - Add New Releases list
 - Add game screenshot carousel
 - Best Deal finder
+- Securing API Keys 
 
 ## Resources
 - MDN Docs
@@ -71,5 +77,5 @@ This project utilizes 2 APIs
 
 ## Contact
 Created by **Jean Park**  
-- LinkedIn: https://www.linkedin.com/in/<your-profile>  
-- Email: thejeanpark@gmail.com
+- [LinkedIn](https://www.linkedin.com/in/jean-park-6a368730)
+- [Email](thejeanpark@gmail.com)
