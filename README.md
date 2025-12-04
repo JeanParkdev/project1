@@ -75,6 +75,12 @@ This project utilizes 2 APIs
 - W3Schools
 - API Documentation
 
+## Slide Deck
+
+<p align="center" width="100%">
+<video src="./assets/screenshot/Presentation.mp4" width="80%" controls></video>
+</p>
+
 ## Contact
 Created by **Jean Park**  
 - [LinkedIn](https://www.linkedin.com/in/jean-park-6a368730)
