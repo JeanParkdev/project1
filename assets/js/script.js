@@ -319,7 +319,6 @@ if (screenshotUrl) {
   titleEl.className = "title is-4";
   titleEl.textContent = game.name || "Untitled game";
 
-  
   // release date
   const rawDate = game.firstReleaseDate || game.releaseDate || null;
   let releaseDate = null;

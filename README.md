@@ -9,8 +9,11 @@ This project uses the OpenCritic API for game data and the YouTube Data API for 
 ## Features
 - 🔍 Search for any game
 - 📄 View detailed game info
-- 🎞️ YouTube Trailer Integration
-- 🔙 Back to results
+    - Title, Release Date, Developers, Platforms, OpenCritic Score
+    - Score badge color coded by rating 
+    - Game Image
+- 🎞️ YouTube Trailer Auto-search and embed
+- 🔙 Back to results navigation
 - 🎨 Clean UI built with Bulma
 
 ## Screenshots
