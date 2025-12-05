@@ -277,11 +277,11 @@ function renderGameDetails(game) {
   const firstScreenshot =
     game.images?.screenshots?.[0] || null;
 
-let screenshotUrl = null;
-if (firstScreenshot) {
-  const path = firstScreenshot.sm || firstScreenshot.og;
-  screenshotUrl = imageBaseUrl + path;
-}
+  let screenshotUrl = null;
+  if (firstScreenshot) {
+    const path = firstScreenshot.sm || firstScreenshot.og;
+    screenshotUrl = imageBaseUrl + path;
+  }
 
 if (screenshotUrl) {
   const imgWrapper = document.createElement('figure');
@@ -377,26 +377,26 @@ if (screenshotUrl) {
   const score = game.topCriticScore ?? game.openCriticScore;
 
   const scoreLabel = document.createElement("span");
-scoreLabel.textContent = "⭐ OpenCritic Score: ";
+  scoreLabel.textContent = "⭐ OpenCritic Score: ";
 
 // Badge
-const scoreBadge = document.createElement("span");
-scoreBadge.className = "tag is-medium";
+  const scoreBadge = document.createElement("span");
+  scoreBadge.className = "tag is-medium";
 
 // Format number to 2 decimals if possible
-let formattedScore = null;
-if (typeof score === "number" && !Number.isNaN(score)) {
-  formattedScore = score.toFixed(2); // e.g. 87.34
-} else if (score != null) {
-  const num = Number(score);
-  formattedScore = Number.isNaN(num) ? String(score) : num.toFixed(2);
-}
+  let formattedScore = null;
+  if (typeof score === "number" && !Number.isNaN(score)) {
+    formattedScore = score.toFixed(2); // e.g. 87.34
+  } else if (score != null) {
+    const num = Number(score);
+    formattedScore = Number.isNaN(num) ? String(score) : num.toFixed(2);
+  }
 
-if (formattedScore !== null) {
-  scoreBadge.textContent = `${formattedScore}/100`;
-} else {
-  scoreBadge.textContent = "N/A";
-}
+  if (formattedScore !== null) {
+    scoreBadge.textContent = `${formattedScore}/100`;
+  } else {
+    scoreBadge.textContent = "N/A";
+  }
 
 // Color-code based on score
 if (formattedScore !== null) {
@@ -409,10 +409,11 @@ if (formattedScore !== null) {
     scoreBadge.classList.add("is-warning"); // meh
   } else {
     scoreBadge.classList.add("is-danger"); // low
-  }
-} else {
+  }}
+  else {
   scoreBadge.classList.add("is-dark");
-}
+  }
+
   ratingWrapper.appendChild(scoreLabel);
   ratingWrapper.appendChild(scoreBadge);
 
