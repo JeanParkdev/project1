@@ -78,7 +78,7 @@ This project utilizes 2 APIs
 ## Slide Deck
 
 <p align="center" width="100%">
-<video src="./assets/screenshot/Presentation.mp4" width="80%" controls></video>
+<video src="https://youtu.be/Rs5d6ohriKM" width="80%" controls></video>
 </p>
 
 ## Contact

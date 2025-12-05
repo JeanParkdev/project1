@@ -319,20 +319,24 @@ if (screenshotUrl) {
   titleEl.className = "title is-4";
   titleEl.textContent = game.name || "Untitled game";
 
+  
   // release date
-  const releaseDate = (game.firstReleaseDate || game.releaseDate).split('T')[0]|| null;
+  const rawDate = game.firstReleaseDate || game.releaseDate || null;
+  let releaseDate = null;
+  if (rawDate && typeof rawDate === "string") {
+    releaseDate = rawDate.split("T")[0];
+  }
 
-  const releaseDateEl = document.createElement('p');
+  const releaseDateEl = document.createElement("p");
   releaseDateEl.className = "is-size-6";
-  releaseDateEl.textContent = releaseDate
-    ? `Release date: ${releaseDate}`
-    : "Release date: N/A";
+  releaseDateEl.innerHTML = `<strong>📅 Release date:</strong> ${
+    releaseDate || "N/A"
+  }`;
 
   // creators (Developers / Publishers)
-  const creatorsEl = document.createElement('p');
+  const creatorsEl = document.createElement("p");
   creatorsEl.className = "is-size-6";
 
-  // Companies
   const companies = Array.isArray(game.companies)
     ? game.companies
     : Array.isArray(game.Companies)
@@ -340,14 +344,14 @@ if (screenshotUrl) {
     : [];
 
   if (companies.length > 0) {
-    creatorsEl.textContent =
-      "Creators: " + companies.map(c => c.name || c).join(", ");
+    const names = companies.map((c) => c.name || c).join(", ");
+    creatorsEl.innerHTML = `<strong>👥 Creators:</strong> ${names}`;
   } else {
-    creatorsEl.textContent = "Creators: N/A";
+    creatorsEl.innerHTML = `<strong>👥 Creators:</strong> N/A`;
   }
 
   // Platforms
-  const platformsEl = document.createElement('p');
+  const platformsEl = document.createElement("p");
   platformsEl.className = "is-size-6";
 
   const platforms = Array.isArray(game.platforms)
@@ -357,24 +361,60 @@ if (screenshotUrl) {
     : [];
 
   if (platforms.length > 0) {
-    const platformNames = platforms.map(p => p.name || p).join(", ");
-    platformsEl.textContent = `Platforms: ${platformNames}`;
+    const platformNames = platforms.map((p) => p.name || p).join(", ");
+    platformsEl.innerHTML = `<strong>🎮 Platforms:</strong> ${platformNames}`;
   } else {
-    platformsEl.textContent = "Platforms: N/A";
+    platformsEl.innerHTML = `<strong>🎮 Platforms:</strong> N/A`;
   }
 
   // OC score
 
-  const ratingEl = document.createElement('p');
-  ratingEl.className = "is-size-6 mt-2";
+  const ratingWrapper = document.createElement("p");
+  ratingWrapper.className = "is-size-6 mt-2";
+
 
   // Supports both possible field names from API
   const score = game.topCriticScore ?? game.openCriticScore;
 
-  ratingEl.textContent = 
-    score != null
-      ? `OpenCritic Score: ${score}/100`
-      : "OpenCritic Score: N/A";
+  const scoreLabel = document.createElement("span");
+scoreLabel.textContent = "⭐ OpenCritic Score: ";
+
+// Badge
+const scoreBadge = document.createElement("span");
+scoreBadge.className = "tag is-medium";
+
+// Format number to 2 decimals if possible
+let formattedScore = null;
+if (typeof score === "number" && !Number.isNaN(score)) {
+  formattedScore = score.toFixed(2); // e.g. 87.34
+} else if (score != null) {
+  const num = Number(score);
+  formattedScore = Number.isNaN(num) ? String(score) : num.toFixed(2);
+}
+
+if (formattedScore !== null) {
+  scoreBadge.textContent = `${formattedScore}/100`;
+} else {
+  scoreBadge.textContent = "N/A";
+}
+
+// Color-code based on score
+if (formattedScore !== null) {
+  const numeric = Number(formattedScore);
+  if (numeric >= 85) {
+    scoreBadge.classList.add("is-success"); // great
+  } else if (numeric >= 70) {
+    scoreBadge.classList.add("is-info"); // good
+  } else if (numeric >= 50) {
+    scoreBadge.classList.add("is-warning"); // meh
+  } else {
+    scoreBadge.classList.add("is-danger"); // low
+  }
+} else {
+  scoreBadge.classList.add("is-dark");
+}
+  ratingWrapper.appendChild(scoreLabel);
+  ratingWrapper.appendChild(scoreBadge);
 
   // Description
   const descriptionEl = document.createElement('div');
@@ -400,7 +440,7 @@ if (screenshotUrl) {
   leftCol.appendChild(releaseDateEl);
   leftCol.appendChild(creatorsEl);
   leftCol.appendChild(platformsEl);
-  leftCol.appendChild(ratingEl);
+  leftCol.appendChild(ratingWrapper);
   leftCol.appendChild(descriptionEl);
   leftCol.appendChild(trailerContainer);
 
