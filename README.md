@@ -84,6 +84,9 @@ This project utilizes 2 APIs
 <video src="https://youtu.be/Rs5d6ohriKM" width="80%" controls></video>
 </p>
 
+- [YouTube Video](https://youtu.be/Rs5d6ohriKM)
+- [Slide Deck](https://www.canva.com/design/DAG6gN1Auus/6O6zT3UaPzGAMEgxJ_LCig/edit?utm_content=DAG6gN1Auus&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
+
 ## Contact
 Created by **Jean Park**  
 - [LinkedIn](https://www.linkedin.com/in/jean-park-6a368730)
